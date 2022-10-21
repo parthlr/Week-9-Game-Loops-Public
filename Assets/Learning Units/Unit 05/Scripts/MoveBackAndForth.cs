@@ -9,7 +9,7 @@ public class MoveBackAndForth : MonoBehaviour
     List<Vector3> startPositions;
     List<Vector3> endPositions;
 
-    float moveAmount = 0; // Don't change this line!
+    float moveAmount = 0.01f; // Don't change this line!
     float lerpAmount = 0; // Don't change this line!
 
     // Start is called before the first frame update
@@ -19,23 +19,23 @@ public class MoveBackAndForth : MonoBehaviour
         GetComponent<MoveObjects>().enabled = false; // Keep this line and don't change it.
         
         //DIRECTIONS: Uncomment the lines below and fix them
-        //startPositions = new Something;
-        //endPositions = new Something;
-        //foreach(something in Something)
-        //{
-        //    someList.Add(something.transform.position); // one of these lists needs this kind of position...
-        //    thisOtherList.Add(something.transform.position + new Vector3(0,0,10f)); // another one needs another...
-        //}
+        startPositions = new List<Vector3>();
+        endPositions = new List<Vector3>();
+        foreach(GameObject g in ObjectsToMove)
+        {
+            startPositions.Add(g.transform.position); // one of these lists needs this kind of position...
+            endPositions.Add(g.transform.position + new Vector3(0,0,10f)); // another one needs another...
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         //DIRECTIONS: Uncomment the lines below and fix them
-        //for (something; something.Count something; something)
-        //{
-        //    someList[something].transform.position = Vector3.Lerp(someOtherList[something], aThirdList[something], lerpAmount);
-        //}
+        for (int i = 0; i < ObjectsToMove.Count; i++)
+        {
+            ObjectsToMove[i].transform.position = Vector3.Lerp(startPositions[i], endPositions[i], lerpAmount);
+        }
 
         //Don't change anything below here!
         lerpAmount += moveAmount;

@@ -14,13 +14,13 @@ public class ObjectManager : MonoBehaviour
 
     void Awake()
     {
-        
+        // Move initialization to awake
+        objectMover = GetComponent<MoveObjects>();
+        objectMover.ObjectsToMove = objects;
+        objectMover.StartMovement();
     }
     // Start is called before the first frame update
     void Start()
     {
-        objectMover = GetComponent<MoveObjects>();
-        objectMover.ObjectsToMove = objects;
-        objectMover.StartMovement();
     }
 }
